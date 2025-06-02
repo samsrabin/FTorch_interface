@@ -62,6 +62,8 @@ def buildlib(bldroot, installpath, case):
 
     # Path to the torch library - usually installed with pyTorch
     torch_dir = case.get_value("TORCH_DIR")
+    if torch_dir is None:
+        raise RuntimeError("This case does not appear to have the TORCH_DIR variable.")
     torch_library = os.path.join(torch_dir, "lib", "libtorch_cpu.so")
     if not os.path.isfile(torch_library):
         torch_dir =  os.path.join(installpath,"libtorch")
